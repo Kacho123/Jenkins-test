@@ -1,17 +1,14 @@
-# Base image
+# Use a lightweight version of Nginx
 FROM nginx:alpine
 
-# Maintainer info (optional)
-LABEL maintainer="yourname@example.com"
-
-# Remove default Nginx static files
+# Clean default html
 RUN rm -rf /usr/share/nginx/html/*
 
-# Copy your website files to Nginx html folder
+# Copy your static site into nginx
 COPY . /usr/share/nginx/html
 
-# Expose port 80 for web traffic
-EXPOSE 3000
+# Expose port 80 (HTTP)
+EXPOSE 80
 
-# Start Nginx
+# Start nginx
 CMD ["nginx", "-g", "daemon off;"]
